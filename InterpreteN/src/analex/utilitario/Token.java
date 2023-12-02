@@ -38,7 +38,18 @@ public class Token {
     public static final int ayuda = 114;
     public static final int activo = 115;*/
     
-    
+    public static final int usuario = 100;
+    public static final int persona = 101; 
+    public static final int producto = 102;
+    public static final int categoria = 103;
+    public static final int inventario = 104;
+    public static final int venta = 105;
+    public static final int carrito = 106;
+    public static final int bitacora = 107;
+    public static final int carritoDetalle = 108;
+    public static final int reporte = 109;
+    public static final int ayuda =110;
+    public static final int activo = 111;
     
     ///valores de accion del caso de uso 200-299
     public static final int add = 200;
@@ -64,12 +75,7 @@ public class Token {
     public static final String lexeme_End = "end";
     public static final String lexeme_Error = "error";
 
-    
-    
-    
-        /**
-     *
-     */
+  
 
    /* public static final String lexeme_User = "user";
     public static final String lexeme_Persona = "persona";
@@ -88,6 +94,18 @@ public class Token {
     public static final String lexeme_detalle_receta = "detalleReceta" ;
     public static final String lexeme_ayuda = "ayuda" ;*/
 
+    public static final String Lexeme_usuario ="usuario";
+    public static final String Lexeme_persona ="persona";
+    public static final String Lexeme_producto ="producto";
+    public static final String Lexeme_categoria ="cateogoria";
+    public static final String Lexeme_inventario ="inventario";
+    public static final String Lexeme_venta ="venta";
+    public static final String Lexeme_carrito ="carrito";
+    public static final String Lexeme_bitacora ="bitacora";
+    public static final String Lexeme_carritoDetalle ="carritoDetalle";
+    public static final String Lexeme_reporte ="reporte";
+    public static final String Lexeme_activo ="activo";
+    public static final String Lexeme_ayuda="ayuda";
     
     
     
@@ -105,4 +123,228 @@ public class Token {
 
     public static final String lexeme_Error_Command = "UNKNOWN COMMAND";
     public static final String lexeme_Error_Character = "UNKNOWN CHARACTER";
+    
+    public Token(String token) {
+        int  id =  findByLenxeme(token);
+        if (id != -1) {
+            if (100 <= id && id < 200) {
+                this.name = cu;
+                this.atribute = id;
+            } else if (200 <= id && id < 300) {
+                this.name = action;
+                this.atribute = id;
+            }
+        } else {
+            this.name = error;
+            this.atribute = error_Command;
+            System.err.println("Class Token.constructor dice: \n"
+                    + "El lexema enviado al contruir no es reconocido como un token"
+                    + "Lexema: " + token);
+        }
+    }
+    
+    public Token(int name) {
+        this.name = name;
+    }
+
+    public Token(int name, int atribute) {
+        this.name = name;
+        this.atribute = atribute;
+    }
+
+    public Token() {
+    }
+
+    public int getName() {
+        return name;
+    }
+
+    public void setName(int name) {
+        this.name = name;
+    }
+
+    public int getAtribute() {
+        return atribute;
+    }
+
+    public void setAtribute(int atribute) {
+        this.atribute = atribute;
+    }
+    
+    
+   public String toString() {
+        if (0 <= name && name <= 1) {
+            return "< " + getStringToken(name) + "," + getStringToken(atribute) + ">";
+        } else if (name == 2) {
+            return "< " + getStringToken(name) + "," + atribute + ">";
+        } else if (name == 3) {
+            return "< " + getStringToken(name) + "," + "____________>";
+        } else if (name == 4) {
+            return "< " + getStringToken(name) + "," + getStringToken(atribute) + ">";
+        }
+        return "(TOKEN, DESCONOCIDO)";
+    }
+   
+   public String getStringToken(int token) {
+    String lexeme;
+    switch (token) {
+        case cu:
+            lexeme = lexeme_CU;
+            break;
+        case action:
+            lexeme = lexeme_Action;
+            break;
+        case params:
+            lexeme = lexeme_Params;
+            break;
+        case end:
+            lexeme = lexeme_End;
+            break;
+        case error:
+            lexeme = lexeme_Error;
+            break;
+        case usuario:
+            lexeme = Lexeme_usuario;
+            break;
+        case persona:
+            lexeme = Lexeme_persona;
+            break;
+        case producto:
+            lexeme = Lexeme_producto;
+            break;
+        case inventario:
+            lexeme = Lexeme_inventario;
+            break;
+        case categoria:
+            lexeme = Lexeme_categoria;
+            break;
+        case venta:
+            lexeme = Lexeme_venta;
+            break;
+        case carrito:
+            lexeme = Lexeme_carrito;
+            break;
+        case bitacora:
+            lexeme = Lexeme_bitacora;
+            break;
+        case carritoDetalle:
+            lexeme = Lexeme_carritoDetalle;
+            break;
+        case reporte:
+            lexeme = Lexeme_reporte;
+            break;
+        case add:
+            lexeme = lexeme_Add;
+            break;
+        case delete:
+            lexeme = lexeme_Delete;
+            break;
+        case modify:
+            lexeme = lexeme_Modify;
+            break;
+        case get:
+            lexeme = lexeme_Get;
+            break;
+        case verify:
+            lexeme = lexeme_Verify;
+            break;
+        case cancel:
+            lexeme = lexeme_Cancel;
+            break;
+        case report:
+            lexeme = lexeme_Report;
+            break;
+        case list:
+            lexeme = lexeme_list;
+            break;
+        case ver:
+            lexeme = lexeme_ver;
+            break;
+        case help:
+            lexeme = lexeme_help;
+            break;
+        case error_Command:
+            lexeme = lexeme_Error_Command;
+            break;
+        case error_Character:
+            lexeme = lexeme_Error_Character;
+            break;
+        default:
+            lexeme = "N: " + token;
+            break;
+    }
+    return lexeme;
+}
+    public int findByLenxeme(String lexeme){
+        switch (lexeme) {
+            case lexeme_CU:
+                return cu;
+            case lexeme_Action:
+                return  action;
+            case lexeme_Params:
+                return  params;
+            case lexeme_End:
+                return  end;
+            case lexeme_Error:
+                return error;
+
+
+                ///CU
+            case Lexeme_usuario:
+                return  usuario;
+            case Lexeme_persona:
+                return persona;
+            case Lexeme_categoria:
+                return categoria;
+            case Lexeme_producto:
+                return producto;
+            case Lexeme_inventario:
+                return inventario;
+            case Lexeme_venta:
+                return venta;
+            case Lexeme_carrito:
+                return carrito;
+            case Lexeme_bitacora:
+                return bitacora;
+            case Lexeme_carritoDetalle:
+                return carritoDetalle;
+            case Lexeme_reporte:
+                return reporte;
+        
+
+
+
+            case lexeme_Add:
+                return  add;
+            case lexeme_Delete:
+                return  delete;
+            case lexeme_Modify:
+                return  modify;
+            case lexeme_Get:
+                return  get;
+            case lexeme_Verify:
+                return  verify;
+            case lexeme_Cancel:
+                return  cancel;
+            case lexeme_Report:
+                return  report;
+            case lexeme_ver:
+                return  ver;
+            case lexeme_list:
+                return list;
+            case lexeme_help:
+                return help;
+
+
+
+            case lexeme_Error_Command:
+                return error_Command;
+            case lexeme_Error_Character:
+                return error_Character;
+
+            default:
+                return -1;
+        }
+        
+    }
 }

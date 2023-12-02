@@ -3,7 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package interpreten;
+import negocio.*;
+import negocio.*;
 
+import analex.interprete;
+import analex.interfaces.ListaEventoToken;
+import analex.utilitario.Token;
+import evento.eventoToken;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 /**
  *
  * @author jorgito

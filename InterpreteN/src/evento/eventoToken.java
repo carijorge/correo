@@ -15,6 +15,7 @@ import java.util.List;
  * @author jorgito
  */
 public class eventoToken extends EventObject {
+    
     private int action;//accion de caso de uso
     private List<String> params;//lista de parametros
     private String sender;//correo 
@@ -24,12 +25,12 @@ public class eventoToken extends EventObject {
         params = new ArrayList<>();
     }
 
-    public eventoToken( String sender, Object source) {
+    public eventoToken( Object source , String sender) {
         super(source);
         this.sender = sender;
     }
 
-    public eventoToken(int action, List<String> params,  Object source) {
+    public eventoToken(Object source,List<String> params,int action) {
         super(source);
         this.action = action;
         this.params = params;
